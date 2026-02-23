@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuryRider | Beyond the Redline</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;700;900&display=swap');
+        
+        :root {
+            --neon-red: #ff003c;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .font-heading {
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .text-neon {
+            color: var(--neon-red);
+            text-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
+        }
+
+        .bg-neon {
+            background-color: var(--neon-red);
+        }
+
+        .border-neon {
+            border-color: var(--neon-red);
+        }
+
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(0deg, #050505 15%, rgba(5, 5, 5, 0.3) 100%);
+        }
+
+        .card-tilt {
+            transition: transform 0.3s ease;
+        }
+        .card-tilt:hover {
+            transform: translateY(-10px) rotateX(5deg);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: var(--neon-red); border-radius: 10px; }
+
+        .reveal { opacity: 0; transform: translateY(30px); }
+        
+        /* Optimized background visual */
+        .bike-bg {
+            filter: brightness(0.75) contrast(1.1);
+            object-position: center 30%; /* Focus on the bike details */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="font-heading font-bold text-xl tracking-tighter flex items-center gap-2">
+                <span class="bg-neon text-white px-2 py-0.5 rounded">FURY</span>RIDER
+            </div>
+            <!-- Top links removed as requested -->
+            <div class="flex items-center gap-4">
+                <a href="https://youtube.com/@furyrider-b7h" target="_blank" class="bg-neon hover:scale-105 transition-transform px-5 py-2 text-[10px] font-black uppercase tracking-widest rounded-full">
+                    Subscribe
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- Background Image updated to the requested BeansMotoBooth link -->
+            <img id="hero-bike" src="https://www.beansmotobooth.com/cdn/shop/files/3bb768c8-bece-4214-b5ba-a9bf027f3abe.jpg?v=1742443683" 
+                 class="w-full h-full object-cover opacity-100 bike-bg" alt="Yamaha MT-15 Portrait">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4">
+            <p class="font-heading text-neon text-xs md:text-sm tracking-[0.5em] mb-4 reveal">Chasing the Horizon</p>
+            <h1 class="font-heading text-5xl md:text-8xl font-bold leading-none mb-8 reveal">
+                LIVE TO <span class="text-transparent" style="-webkit-text-stroke: 1px white;">RIDE</span><br>
+                RIDE TO <span class="text-neon">LIVE</span>
+            </h1>
+            <div class="flex flex-wrap justify-center gap-6 reveal">
+                <a href="#vlogs" class="group flex items-center gap-3 bg-white text-black font-bold py-4 px-8 rounded-sm hover:bg-neon hover:text-white transition-all">
+                    LATEST ADVENTURE <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                </a>
+                <a href="#garage" class="group flex items-center gap-3 border border-white/20 font-bold py-4 px-8 rounded-sm hover:border-neon transition-all">
+                    VIEW SPECS <i data-lucide="zap" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Social Sidebar -->
+        <div class="absolute left-10 bottom-10 hidden lg:flex flex-col gap-6 text-white/30">
+            <a href="#" class="hover:text-neon transition-colors"><i data-lucide="instagram"></i></a>
+            <a href="#" class="hover:text-neon transition-colors"><i data-lucide="twitter"></i></a>
+            <a href="#" class="hover:text-neon transition-colors"><i data-lucide="facebook"></i></a>
+            <div class="h-20 w-[1px] bg-white/10 mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="bg-zinc-900/50 py-10 border-y border-white/5">
+        <div class="container mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center reveal">
+                <div class="text-4xl font-heading font-bold text-neon">50+</div>
+                <div class="text-[10px] uppercase tracking-widest text-zinc-500 mt-2">Rides</div>
+            </div>
+            <div class="text-center reveal">
+                <div class="text-4xl font-heading font-bold">25K</div>
+                <div class="text-[10px] uppercase tracking-widest text-zinc-500 mt-2">Views Monthly</div>
+            </div>
+            <div class="text-center reveal">
+                <div class="text-4xl font-heading font-bold text-neon">1+</div>
+                <div class="text-[10px] uppercase tracking-widest text-zinc-500 mt-2">Country Tours</div>
+            </div>
+            <div class="text-center reveal">
+                <div class="text-4xl font-heading font-bold">01</div>
+                <div class="text-[10px] uppercase tracking-widest text-zinc-500 mt-2">Obsession</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Feed -->
+    <section id="vlogs" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="font-heading text-3xl font-bold mb-2">Recent Vlogs</h2>
+                    <div class="w-20 h-1 bg-neon"></div>
+                </div>
+                <button class="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-white transition-colors">View All</button>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8" id="vlog-container">
+                <!-- Vlogs dynamic load -->
+            </div>
+        </div>
+    </section>
+
+    <!-- The Machine Section -->
+    <section id="garage" class="py-24 bg-zinc-950 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 reveal">
+                    <h2 class="font-heading text-5xl font-bold mb-6">THE <br><span class="text-neon italic">DARKSIDE</span> MT-15</h2>
+                    <p class="text-zinc-400 mb-8 leading-relaxed">
+                        The ultimate urban warrior. My current setup for navigating the city and the outskirts. 
+                        Light, agile, and aggressively styled to dominate the streets.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded bg-white/5 flex items-center justify-center text-neon">
+                                <i data-lucide="gauge"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-widest text-zinc-500">Top Speed</h4>
+                                <p class="font-heading text-lg">150 KM/H</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded bg-white/5 flex items-center justify-center text-neon">
+                                <i data-lucide="shield-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-widest text-zinc-500">Agility</h4>
+                                <p class="font-heading text-lg">Deltabox Chassis</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded bg-white/5 flex items-center justify-center text-neon">
+                                <i data-lucide="camera"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-widest text-zinc-500">Setup</h4>
+                                <p class="font-heading text-lg">Dual GoPro Chest Mount</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 reveal">
+                    <div class="relative group">
+                        <div class="absolute -inset-4 bg-neon/20 blur-2xl group-hover:bg-neon/40 transition-all"></div>
+                        <img src="https://images.unsplash.com/photo-1621255416040-4207904791e8?q=80&w=1974&auto=format&fit=crop" 
+                             class="relative rounded-lg shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700" alt="MT-15 Specs">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Text Decor -->
+        <div class="absolute bottom-0 right-0 opacity-[0.02] font-heading text-[15rem] leading-none select-none pointer-events-none">
+            MT-15
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="py-24 bg-black">
+        <div class="container mx-auto px-6 text-center max-w-2xl">
+            <h2 class="font-heading text-4xl font-bold mb-6 reveal">JOIN THE <span class="text-neon">CREW</span></h2>
+            <p class="text-zinc-500 reveal">Stay tuned for the next group ride. We're hitting the canyons soon. Connect with us on social media for real-time updates.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 bg-zinc-950">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="font-heading font-bold text-lg tracking-tighter">
+                <span class="text-neon">FURY</span>RIDER
+            </div>
+            <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                <a href="#" class="hover:text-white">Privacy</a>
+                <a href="#" class="hover:text-white">Copyright</a>
+                <a href="#" class="hover:text-white">Merch Store</a>
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-neon transition-all"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+                <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-neon transition-all"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+        <div class="text-center mt-10 text-[10px] text-zinc-800 uppercase tracking-[0.5em]">
+            &copy; 2024 FuryRider Motorsports. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Content Data
+        const vlogs = [
+            {
+                title: "FuryRider: Raw & Uncut | EP. 104",
+                thumb: "https://i.ytimg.com/vi/sMFshmIAcPw/oar2.jpg?sqp=-oaymwEoCJUDENAFSFqQAgHyq4qpAxcIARUAAIhC2AEB4gEKCBgQAhgGOAFAAQ==&rs=AOn4CLB-Zwqovea0MhL-onwb8dX-WDr2rg&usqp=CCk",
+                views: "245K",
+                tag: "Ride Out"
+            },
+            {
+                title: "FuryRider: Raw & Uncut | EP. 103",
+                thumb: "https://i.ytimg.com/vi/TyU6VRQoRKM/oar2.jpg?sqp=-oaymwEoCJUDENAFSFqQAgHyq4qpAxcIARUAAIhC2AEB4gEKCBgQAhgGOAFAAQ==&rs=AOn4CLAnlSBreGeUHCMnaMrHNKo3uqXXcw&usqp=CCk",
+                views: "182K",
+                tag: "Vlog"
+            },
+            {
+                title: "FuryRider: Raw & Uncut | EP. 102",
+                thumb: "https://i.ytimg.com/vi/4RcAWPxD7tw/oar2.jpg?sqp=-oaymwEoCJUDENAFSFqQAgHyq4qpAxcIARUAAIhC2AEB4gEKCBgQAhgGOAFAAQ==&rs=AOn4CLBSJWXOViIy5BA3V3SQj5jbzC_WgQ&usqp=CCk",
+                views: "310K",
+                tag: "Pure Sound"
+            }
+        ];
+
+        // Inject Vlogs
+        const vlogContainer = document.getElementById('vlog-container');
+        vlogs.forEach(vlog => {
+            const card = document.createElement('div');
+            card.className = 'reveal group card-tilt cursor-pointer';
+            card.innerHTML = `
+                <div class="relative overflow-hidden rounded-lg aspect-video mb-4">
+                    <img src="${vlog.thumb}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Video">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all"></div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-neon text-[8px] font-black uppercase px-2 py-1 tracking-widest">${vlog.tag}</span>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                         <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-black">
+                            <i data-lucide="play" class="fill-current w-5 h-5"></i>
+                         </div>
+                    </div>
+                </div>
+                <h3 class="font-heading text-sm font-bold group-hover:text-neon transition-colors">${vlog.title}</h3>
+                <div class="flex items-center gap-2 mt-2">
+                    <span class="text-[10px] text-zinc-500 uppercase tracking-widest">${vlog.views} Views</span>
+                </div>
+            `;
+            vlogContainer.appendChild(card);
+        });
+
+        lucide.createIcons();
+
+        // GSAP Animations
+        window.addEventListener('load', () => {
+            gsap.to(".reveal", {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: ".reveal",
+                    start: "top 90%"
+                }
+            });
+
+            // Gentle zoom out effect on load
+            gsap.fromTo("#hero-bike", 
+                { scale: 1.1 }, 
+                { scale: 1, duration: 3, ease: "power1.out" }
+            );
+
+            // Parallax on Scroll for Hero Image
+            gsap.to("#hero-bike", {
+                yPercent: 10,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#home",
+                    scrub: true,
+                    start: "top top",
+                    end: "bottom top"
+                }
+            });
+        });
+
+        window.onscroll = function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2');
+            }
+        };
+
+    </script>
+</body>
+</html>
